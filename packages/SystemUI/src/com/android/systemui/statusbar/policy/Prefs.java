@@ -46,7 +46,8 @@ public class Prefs {
 
     public static boolean getLastFastChargeState(Context context) {
         return read(context).getBoolean(LAST_FCHARGE_STATE, false);
-
+    }
+    
     public static void setLastBatteryLevel(Context context, int level) {
         edit(context).putInt(LAST_BATTERY_LEVEL, level).commit();
     }
