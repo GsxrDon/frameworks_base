@@ -2768,8 +2768,20 @@ public final class Settings {
          * @hide
          */
         public static final String STATUS_BAR_SIGNAL_TEXT = "status_bar_signal";
+        
+        /**
+        * @hide
+        * Style of Battery
+        * 0 - Icon Only
+        * 1 - Text Only
+        * 2 - Icon Text
+        * 3 - Icon Centered Text
+        * 4 - Icon Circle
+        * 5 - Hide
+        */
+        public static final String STATUSBAR_BATTERY_ICON = "statusbar_battery_icon";
 
-         /**
+        /**
          * Whether to control brightness from status bar
          *
          * @hide
