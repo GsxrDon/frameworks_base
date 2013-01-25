@@ -2866,6 +2866,14 @@ public final class Settings {
          * @hide
          */
         public static final String STATUS_BAR_IME_SWITCHER = "status_bar_ime_switcher";
+        
+        /**
+         * use Alt Activity Resolver Grid
+         * boolean
+         *
+         * @hide
+         */
+        public static final String ACTIVITY_RESOLVER_USE_ALT = "activity_resolver_use_alt"; 
 
         /**
          * Whether to use a separate delay for "slide to unlock" and security
