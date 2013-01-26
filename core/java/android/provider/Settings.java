@@ -3110,6 +3110,18 @@ public final class Settings {
          * @hide
          */
         public static final String LOCKSCREEN_VIBRATE_ENABLED = "lockscreen.vibrate_enabled";
+        
+        /**
+         * Stores used unsecure lockscreen for normal mode and unlock before unlock when merged
+         * @hide
+         */
+        public static final String LOCKSCREEN_UNSECURE_USED = "lockscreen_unsecure_used";
+        
+        /**
+         * Whether to enable lockscreen rotation
+         * @hide
+         */
+        public static final String LOCKSCREEN_AUTO_ROTATE = "lockscreen_auto_rotate";
 
          /**
           * Volume keys control cursor in text fields (default is 0)
