@@ -23,7 +23,7 @@
     android:id="@+id/keyguard_status_area"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_gravity="right"
+    android:layout_gravity="center"
     android:orientation="vertical">
 
     <LinearLayout
@@ -31,27 +31,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
-        android:layout_gravity="right">
+        android:layout_gravity="center">
         <TextView
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/kg_status_line_font_right_margin"
             android:singleLine="true"
             android:ellipsize="marquee"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="@dimen/kg_status_date_font_size"
             />
 
         <TextView
             android:id="@+id/alarm_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/kg_status_line_font_right_margin"
             android:singleLine="true"
             android:ellipsize="marquee"
             android:textAppearance="?android:attr/textAppearance"
-            android:textSize="@dimen/kg_status_line_font_size"
+            android:layout_marginLeft="4.0dip"
             android:drawablePadding="4dip"
             />
     </LinearLayout>
