@@ -27,6 +27,7 @@ import android.appwidget.AppWidgetProviderInfo;
 import android.content.Context;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.Slog;
 import android.view.Gravity;
@@ -50,6 +51,11 @@ public class KeyguardWidgetPager extends PagedView implements PagedView.PageSwit
     private static float CAMERA_DISTANCE = 10000;
     protected static float OVERSCROLL_MAX_ROTATION = 30;
     private static final boolean PERFORM_OVERSCROLL_ROTATION = true;
+
+    private static final String[] CLOCK_WIDGET_PACKAGES = new String[] {
+        "com.cyanogenmod.lockclock",
+        "com.android.deskclock"
+    };
 
     protected KeyguardViewStateManager mViewStateManager;
     private LockPatternUtils mLockPatternUtils;
@@ -130,6 +136,16 @@ public class KeyguardWidgetPager extends PagedView implements PagedView.PageSwit
             ViewGroup vg = (ViewGroup) newPage;
             if (vg.getChildAt(0) instanceof KeyguardStatusView) {
                 showingStatusWidget = true;
+            } else if (vg.getChildAt(0) instanceof AppWidgetHostView) {
+                AppWidgetProviderInfo info =
+                        ((AppWidgetHostView) vg.getChildAt(0)).getAppWidgetInfo();
+                String widgetPackage = info.provider.getPackageName();
+                for (String packageName : CLOCK_WIDGET_PACKAGES) {
+                    if (packageName.equals(widgetPackage)) {
+                        showingStatusWidget = true;
+                        break;
+                    }
+                }
             }
         }
 
@@ -476,7 +492,8 @@ public class KeyguardWidgetPager extends PagedView implements PagedView.PageSwit
     protected void screenScrolled(int screenCenter) {
         mScreenCenter = screenCenter;
         updatePageAlphaValues(screenCenter);
-        for (int i = 0; i < getChildCount(); i++) {
+        int count = getChildCount();
+        for (int i = 0; i < count; i++) {
             KeyguardWidgetFrame v = getWidgetPageAt(i);
             if (v == mDragView) continue;
             if (v != null) {
@@ -566,8 +583,11 @@ public class KeyguardWidgetPager extends PagedView implements PagedView.PageSwit
         for (int i = 0; i < count; i++) {
             KeyguardWidgetFrame child = getWidgetPageAt(i);
             if (i != mCurrentPage) {
-                child.fadeFrame(this, true, KeyguardWidgetFrame.OUTLINE_ALPHA_MULTIPLIER,
-                        CHILDREN_OUTLINE_FADE_IN_DURATION);
+                if(Settings.System.getInt(mContext.getContentResolver(),
+                        Settings.System.LOCKSCREEN_DISABLE_HINTS, 0) == 0) {
+                    child.fadeFrame(this, true, KeyguardWidgetFrame.OUTLINE_ALPHA_MULTIPLIER,
+                            CHILDREN_OUTLINE_FADE_IN_DURATION);
+                }
                 child.setContentAlpha(0f);
             } else {
                 child.setBackgroundAlpha(0f);

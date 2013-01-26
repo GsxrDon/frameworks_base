@@ -3098,6 +3098,12 @@ public final class Settings {
          * @hide
          */
         public static final String LOCKSCREEN_MAXIMIZE_WIDGETS = "lockscreen_maximize_widgets";
+        
+        /**
+         * Weather to hide lockscreen gadgets glowing hints
+         * @hide
+         */
+        public static final String LOCKSCREEN_DISABLE_HINTS = "lockscreen_disable_hints";
 
         /**
          * Whether to unlock the screen with the home key.  The value is boolean (1 or 0).
